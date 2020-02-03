@@ -1,0 +1,29 @@
+<div class="col-md-4 offset-4 card mt-2">
+    <div class="card-body">
+        <h1>Login</h1>
+        {{lForm.value | json}}
+        <form action="" [formGroup]="lForm">
+            <div class="form-group">
+                <label for="username">username</label>
+                <input 
+                formControlName="uname"
+                type="text" name="username" id="username" class="form-control">
+
+                <div *ngIf="uname.invalid && uname.touched" class="alert alert-danger">
+                    <p *ngIf="uname.errors.required">name required</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">password</label>
+                <input 
+                formControlName="password"
+                type="password" name="password" id="password" class="form-control">
+
+                <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
+                    <p *ngIf="password.errors.required">password required</p>
+                </div>
+            </div>
+            <button class="btn btn-block btn-warning" type="submit">Login</button>
+        </form>
+    </div>
+</div>

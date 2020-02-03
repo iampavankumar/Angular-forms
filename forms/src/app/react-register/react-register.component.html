@@ -1,0 +1,57 @@
+<div class="container-fliud">
+    <h1 class="text-center text-bold text-primary">R-Register</h1>
+
+    {{rForm.value|json}}
+    <form action="" [formGroup]="rForm" (ngSubmit)="submit(rForm)">
+        <div class="form-group">
+            <label for="uname">Name</label>
+            <input 
+            formControlName="uname"
+            type="text" class="form-control" name="uname" id="uname" value="uname">
+
+            <div *ngIf="uname.invalid && uname.touched" class="alert alert-danger">
+                <p *ngIf="uname.errors.required">name required</p>
+            </div>
+        </div>
+        
+        
+        <div class="form-group">
+            <label for="password">password</label>
+            <input
+            formControlName="pass"
+             type="password" class="form-control" value="" name="password" id="password">
+             <div *ngIf="pass.invalid && pass.touched" class="alert alert-danger">
+                <p *ngIf="pass.errors.required">password required</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="cpass">conformpassword</label>
+            <input 
+            formControlName="cpass"
+            type="password" class="form-control" value="cpass" name="cpass" id="cpass">
+        </div>
+
+        <div formGroupName="address">
+            <div class="form-group">
+                <label for="city">city</label>
+                <input
+                formControlName="city"
+                type="text" value="city" name="city" id="city" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="state">state</label>
+                <input 
+                formControlName="state"
+                type="text" value="state" name="state" id="state" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="pincode">pincode</label>
+                <input 
+                formControlName="pincode"
+                type="text" value="pincode" name="pincode" id="pincode" class="form-control">
+            </div>
+        </div>
+        <button class="btn btn-danger" type="submit">Register</button>
+        <button (click)="onLoadData()" class="btn btn-warning ml-2" type="button">Load data</button>
+    </form>
+</div>

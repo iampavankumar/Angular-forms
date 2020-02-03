@@ -1,0 +1,77 @@
+<div class="col-md-4 offset-4 card mt-3">
+    <div class="card-body">
+        <h1>Form-builder</h1>
+        {{form.value|json}}
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+            <div class="form-group">
+                <input 
+                formControlName="name" 
+                type="text" placeholder="enter ur name" name="name" id="name" class="form-control">
+                <div class="alert alert-danger" *ngIf="name.invalid && name.touched">
+                    <small *ngIf="name.errors.required">name required</small>
+                    <small *ngIf="name.errors.minlength">name greater than 5 chars</small>
+                    <small *ngIf="name.errors.nospacebetweenusername">no space allowed</small>
+                    <small *ngIf="name.errors.samename">admin name not allowed</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <input 
+                formControlName="password"
+                type="password" placeholder="enter ur password" name="password" id="password" class="form-control">
+                <div class="alert alert-danger" *ngIf="password.invalid && password.touched">
+                    <small *ngIf="password.errors.pattern">1st cap</small>
+                    
+                </div>
+               
+            </div>
+            <div class="form-group">
+                <input 
+                formControlName="email"
+                type="email" placeholder="enter ur email" name="email" id="email" class="form-control">
+            </div>
+            <div formGroupName="address">
+                <div class="form-group">
+                    <input 
+                    formControlName="city"
+                    type="text" placeholder="enter ur city" name="city" id="city" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input 
+                    formControlName="state"
+                    type="text" placeholder="enter ur state" name="state" id="state" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input 
+                    formControlName="pincode"
+                    type="text" placeholder="enter ur pincode" name="pincode" id="pincode" class="form-control">
+               
+                    <!-- <div class="alert alert-danger" *ngIf="pincode.invalid && pincode.touched">
+                        <small *ngIf="pincode.errors.required">name required</small>
+                        <small *ngIf="pincode.errors.pattern">only number >6</small>
+                    </div> -->
+                </div>
+            </div>
+            <div formArrayName="aliases">
+                <div>
+                    <button class="btn btn-warning" (click)="addAlias()
+                    ">Add alias</button>
+                </div>
+                <div class="form-group" *ngFor="let address of aliases.controls; let i=index">
+                    <label for="alias">Alias</label>
+                    <input 
+                    [formControlName]="i"
+                    type="text" name="alias" id="" class="form-control">
+                </div>
+            </div>
+            <button 
+            [disabled]="form.invalid"
+            type="submit" class="btn btn-danger float-left ">Signup</button>
+            <button (click)="onUpdate()" type="button" class="btn btn-warning float-right">update profile</button>
+        </form>
+        <br>
+        <br>
+        <div class="form-group mt-2">
+            
+        </div>
+    </div>
+</div>
